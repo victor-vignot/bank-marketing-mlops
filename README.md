@@ -1,2 +1,6 @@
-# bank-marketing-mlopsVictor VIGNOT, Matis GONIDEC--RDISSI
+# bank-marketing-mlops
+
 ## Auteurs
+
+- Victor VIGNOT
+- Matis GONIDEC--RDISSI
