@@ -32,6 +32,13 @@ bank_schema = pa.DataFrameSchema(
         "y": pa.Column(str, pa.Check.isin(OUI_NON)),
     },
     strict=True,  # aucune colonne en plus, aucune en moins
+    checks=[
+        # "jamais contacté" : pdays = -1 si et seulement si previous = 0
+        pa.Check(
+            lambda df: (df["pdays"] == -1) == (df["previous"] == 0),
+            error="pdays=-1 doit correspondre à previous=0",
+        ),
+    ],
 )
 
 
