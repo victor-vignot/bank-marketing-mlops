@@ -39,3 +39,12 @@ def test_campagne_trop_longue(df):
     casse.loc[0, "campaign"] = 500
     with pytest.raises(pa.errors.SchemaErrors):
         validate_bank_data(casse)
+
+
+def test_pdays_incoherent(df):
+    # le CRM passe à la convention 999 = "jamais contacté"
+    casse = df.copy()
+    casse.loc[0, "pdays"] = 999
+    casse.loc[0, "previous"] = 0
+    with pytest.raises(pa.errors.SchemaErrors):
+        validate_bank_data(casse)
