@@ -32,3 +32,10 @@ def test_cible_inconnue(df):
     casse.loc[0, "y"] = "peut-etre"
     with pytest.raises(pa.errors.SchemaErrors):
         validate_bank_data(casse)
+
+
+def test_campagne_trop_longue(df):
+    casse = df.copy()
+    casse.loc[0, "campaign"] = 500
+    with pytest.raises(pa.errors.SchemaErrors):
+        validate_bank_data(casse)

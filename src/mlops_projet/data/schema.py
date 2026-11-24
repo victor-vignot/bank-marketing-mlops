@@ -25,7 +25,7 @@ bank_schema = pa.DataFrameSchema(
             "jul", "aug", "sep", "oct", "nov", "dec",
         ])),
         "duration": pa.Column(int, pa.Check.ge(0)),
-        "campaign": pa.Column(int, pa.Check.ge(1)),
+        "campaign": pa.Column(int, pa.Check.in_range(1, 100)),
         "pdays": pa.Column(int, pa.Check.ge(-1)),
         "previous": pa.Column(int, pa.Check.ge(0)),
         "poutcome": pa.Column(str, pa.Check.isin(["success", "failure", "other", "unknown"])),

@@ -30,3 +30,10 @@ def test_meme_calcul_entrainement_et_prediction():
     client = df.iloc[0].drop(["duration", "y"]).to_dict()
     prediction = build_features(pd.DataFrame([client]))
     pd.testing.assert_frame_equal(entrainement, prediction)
+
+
+def test_a_un_credit():
+    features = build_features(load_bank_data())
+    assert set(features["a_un_credit"]) == {0, 1}
+    # premier client du fichier : housing = yes, donc 1
+    assert features.loc[0, "a_un_credit"] == 1
